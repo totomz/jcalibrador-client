@@ -6,7 +6,7 @@ import subprocess
 from multiprocessing import Pool
 
 # Create SQS client
-sqs = boto3.client('sqs')
+sqs = boto3.client('sqs', region_name='us-east-2')
 
 region = sqs._client_config.region_name
 
