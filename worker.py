@@ -6,7 +6,8 @@ import subprocess
 from multiprocessing import Pool
 
 # Create SQS client
-sqs = boto3.client('sqs', region_name='us-east-2')
+# credentials from ~/.boto
+sqs = boto3.client('sqs', region_name='us-east-2' )
 
 region = sqs._client_config.region_name
 
@@ -27,7 +28,7 @@ def get_jobs():
             AttributeNames=['All'],
             MaxNumberOfMessages=1,
             VisibilityTimeout=120,
-            WaitTimeSeconds=2
+            WaitTimeSeconds=20
         )
 
         try:
@@ -35,20 +36,19 @@ def get_jobs():
             job = json.loads(resp['Messages'][0]['Body'])
             pool.apply_async(process_job, (job,))
         except KeyError:
-            print("No jobs found")
-            break
+            print("No jobs found....")
 
 
 def process_job(job):
     out = subprocess.check_output(["docker", "run", job['image']] + job['args'].split(' '), stderr=subprocess.STDOUT)
     result = ''.join(out.splitlines())
-    # Se qualcosa va in merda so cazzi
+
+    # Non andra' mai in errore
     response = sqs.send_message(
         QueueUrl=queue_results,
         MessageBody=json.dumps({'id': job['id'], 'result': float(result)})
     )
-    print("ma ha mandato?")
-    print(response)
+
 
 
 get_jobs()
