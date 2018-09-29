@@ -9,9 +9,9 @@ After=cloud-final.service
 
 [Service]
 EnvironmentFile=/etc/environment
-ExecStart=/root/.nvm/versions/node/v8.12.0/bin/node /opt/runner/server.js
+ExecStart=/bin/python /opt/jcalibrador-client/worker.py
 
-WorkingDirectory=/opt/runner
+WorkingDirectory=/opt/jcalibrador-client
 Restart=always
 RestartSec=10
 
