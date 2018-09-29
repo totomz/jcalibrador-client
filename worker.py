@@ -35,6 +35,7 @@ def get_jobs():
             job = json.loads(resp['Messages'][0]['Body'])
             pool.apply_async(process_job, (job,))
         except KeyError:
+            print("No jobs found")
             break
 
 
