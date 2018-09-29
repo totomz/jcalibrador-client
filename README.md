@@ -1,1 +1,5 @@
-# jcaibrador-remoter
+# jcalibrador-remoter
+
+```bash
+pip install boto3
+```
