@@ -1,0 +1,24 @@
+# Copy to /lib/systemd/system/runner.service
+# systemctl enable runner
+# systemctl start runner
+
+[Unit]
+Description=runner server
+Wants=cloud-final.service
+After=cloud-final.service
+
+[Service]
+EnvironmentFile=/etc/environment
+ExecStart=/usr/bin/node /opt/runner/server.js
+
+WorkingDirectory=/opt/runner
+Restart=always
+RestartSec=10
+
+# Output to syslog
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=runner
+
+[Install]
+WantedBy=multi-user.target
