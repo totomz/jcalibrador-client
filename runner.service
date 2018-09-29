@@ -9,7 +9,7 @@ After=cloud-final.service
 
 [Service]
 EnvironmentFile=/etc/environment
-ExecStart=/usr/bin/node /opt/runner/server.js
+ExecStart=/root/.nvm/versions/node/v8.12.0/bin/node /opt/runner/server.js
 
 WorkingDirectory=/opt/runner
 Restart=always
