@@ -14,6 +14,14 @@ region = sqs._client_config.region_name
 queue_jobs = 'https://%s.queue.amazonaws.com/242728094507/jcalibrador-jobs' % region
 queue_results = 'https://%s.queue.amazonaws.com/242728094507/jcalibrador-results' % region
 
+# class DockerJob():
+#     def __init__(self, command='run', image='ubuntu', arguments=['sleep 1'.'echo 3']):
+#         self.command = command
+#         self.image = image
+#         self.arguments = arguments
+#
+#     def set_from_sqs(self, message):
+
 
 def get_jobs():
 

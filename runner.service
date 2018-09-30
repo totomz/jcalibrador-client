@@ -12,16 +12,11 @@ Type=simple
 EnvironmentFile=/etc/environment
 Environment="PYTHONUNBUFFERED=True"
 ExecStart=/opt/jcalibrador-client/worker.py
-#ExecStart=/usr/bin/python /opt/jcalibrador-client/worker.py
+StandardInput=tty-force
 
 WorkingDirectory=/opt/jcalibrador-client
 Restart=always
 RestartSec=10
-
-# Output to syslog
-StandardOutput=syslog
-StandardError=syslog
-SyslogIdentifier=runner
 
 [Install]
 WantedBy=multi-user.target
