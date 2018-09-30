@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7 -p
+#!/usr/bin/python2.7 -u
 
 import boto3
 import json
@@ -28,7 +28,7 @@ def get_jobs():
             AttributeNames=['All'],
             MaxNumberOfMessages=1,
             VisibilityTimeout=120,
-            WaitTimeSeconds=20
+            WaitTimeSeconds=2
         )
 
         try:

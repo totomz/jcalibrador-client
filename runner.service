@@ -8,8 +8,11 @@ Wants=cloud-final.service
 After=cloud-final.service
 
 [Service]
+Type=simple
 EnvironmentFile=/etc/environment
-ExecStart=/bin/python /opt/jcalibrador-client/worker.py
+Environment="PYTHONUNBUFFERED=True"
+ExecStart=/opt/jcalibrador-client/worker.py
+#ExecStart=/usr/bin/python /opt/jcalibrador-client/worker.py
 
 WorkingDirectory=/opt/jcalibrador-client
 Restart=always
